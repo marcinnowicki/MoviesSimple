@@ -12,5 +12,20 @@
  * @author marci_000
  */
 class Roles {
-    //put your code here
+
+//put your code here
+    public $id;
+    public $idMovie;
+    public $idActor;
+    public $character;
+    public $description;
+
+    function Roles($newid, $newidMovie, $newidActor, $newcharacter, $newdescription) {
+        $this->id = $newid ;
+        $this->idMovie  = $newidMovie ;
+        $this->idActor = $newidActor ;
+        $this->character = $newcharacter ;
+        $this->description = $newdescription ;
+    }
+
 }
