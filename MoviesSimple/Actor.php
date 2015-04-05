@@ -43,7 +43,7 @@ class Actor {
             'id' => $this->id,
             'name' => $this->name,
             'familyname' => $this->familyname,
-            'birthdate ' => $this->birthdate 
+            'birthdate' => $this->birthdate 
         );
         return $myCopy ;
     }

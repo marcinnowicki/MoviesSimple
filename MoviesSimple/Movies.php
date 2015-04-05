@@ -64,21 +64,25 @@ class Movies {
 
     function my_sort_function($a, $b) {
         // return strcmp($a->birthdate , $b->birthdate) ;
-        return $a->actor->getproperty("birthdate") > $b->actor->getproperty("birthdate");
+        return $a->birthdate > $b->birthdate;
     }
 
     function PrintSorted() {
         // var_dump($this->actors) ;
         // usort($this->actors, array( $this, "my_sort_function"));
-        
-        foreach ($this->actors as $actor) {
-            echo "Actor " . $actor->id . " " ; 
-            var_dump($actor) ;
-            
+        $myactors = $this->actors ;
+        echo "\n\nTest " . $myactors[0]->character . "\n" ;
+        foreach ($myactors as $actor) {
+            $temp = $actor->actor ;
+            $tosort[] = array("birthdate" => $temp["birthdate"] , "character" => $actor->character) ;
         }
         
-        var_dump($this->actors) ;
-    }
+        array_multisort($tosort , SORT_ASC) ;
+        foreach( $tosort as $tempcharacter ) {
+            echo "On " . $tempcharacter["birthdate"] . " " . $tempcharacter["character"]. " was born\n" ;
+            
+        }
+        }
 
 
     function JSON() {
