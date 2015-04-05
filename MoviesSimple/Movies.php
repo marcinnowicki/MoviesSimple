@@ -70,20 +70,18 @@ class Movies {
     function PrintSorted() {
         // var_dump($this->actors) ;
         // usort($this->actors, array( $this, "my_sort_function"));
-        $myactors = $this->actors ;
-        echo "\n\nTest " . $myactors[0]->character . "\n" ;
+        $myactors = $this->actors;
+        echo "\n\nTest " . $myactors[0]->character . "\n";
         foreach ($myactors as $actor) {
-            $temp = $actor->actor ;
-            $tosort[] = array("birthdate" => $temp["birthdate"] , "character" => $actor->character) ;
-        }
-        
-        array_multisort($tosort , SORT_ASC) ;
-        foreach( $tosort as $tempcharacter ) {
-            echo "On " . $tempcharacter["birthdate"] . " " . $tempcharacter["character"]. " was born\n" ;
-            
-        }
+            $temp = $actor->actor;
+            $tosort[] = array("birthdate" => $temp["birthdate"], "character" => $actor->character);
         }
 
+        array_multisort($tosort, SORT_ASC);
+        foreach ($tosort as $tempcharacter) {
+            echo "On " . $tempcharacter["birthdate"] . " " . $tempcharacter["character"] . " was born\n";
+        }
+    }
 
     function JSON() {
         $JSON = array(
