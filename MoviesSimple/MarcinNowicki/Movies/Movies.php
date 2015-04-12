@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Movies
  *
@@ -21,6 +15,13 @@ class Character {
     public $description;
     public $actor;
     
+    /**
+     * 
+     * @param type $newid
+     * @param type $newcharacter
+     * @param type $newdescription
+     * @param \MarcinNowicki\Movies\Actor $newactor
+     */
     function __construct($newid, $newcharacter, $newdescription, Actor $newactor) {
         $this->idActor = $newid;
         $this->character = $newcharacter;
@@ -30,6 +31,43 @@ class Character {
 
 }
 
+/**
+ * Class containing information about movie
+ * Each entity must have a unique identifier.
+ * The Movie entity must hold the title, runtime and release date.
+ * Properties  - all private
+ * id          - unique id
+ * title       - title of the movie
+ * runtime     - run time of a movie in minutes
+ * releasedate - Datetime, release date of a movie
+ * actors      - array containing objects of actors
+ * 
+ * Constructor:
+ * __construct
+ * 
+ * Destructor:
+ * __destruct
+ * 
+ * Methods (setters and getters):
+ * getId          - returns id
+ * getTitle       - returns movie title
+ * getRuntime     - returns run time of the movie in minutes
+ * getReleasedate - returns date of release
+ * getActors      - returns array of all actors, as objects
+ * setTitle       - updates movie title
+ * setRuntime     - updates movie runtime
+ * setReleasedate - updates movie release date
+ * setActors      - updates list of actors
+ * 
+ * Methods:
+ * Update         - updates all properties except actors
+ * AssignActor    - assign actor and character played
+ * info           - returns information about the movie as a string
+ * my_sort_function - deprecated
+ * PrintSorted    - prints cast in order of actors birthdate
+ * JSON           - returns object as JSON
+ * 
+ */
 class Movies {
 
     private $id;
@@ -39,6 +77,7 @@ class Movies {
     private $actors;
 
     /**
+     * Construtor
      * 
      * @param type $newid
      * @param type $newtitle
@@ -52,6 +91,43 @@ class Movies {
         $this->releasedate = $newreleasedate;
     }
 
+    function getId() {
+        return $this->id;
+    }
+
+    function getTitle() {
+        return $this->title;
+    }
+
+    function getRuntime() {
+        return $this->runtime;
+    }
+
+    function getReleasedate() {
+        return $this->releasedate;
+    }
+
+    function getActors() {
+        return $this->actors;
+    }
+
+    function setTitle($title) {
+        $this->title = $title;
+    }
+
+    function setRuntime($runtime) {
+        $this->runtime = $runtime;
+    }
+
+    function setReleasedate($releasedate) {
+        $this->releasedate = $releasedate;
+    }
+
+    function setActors($actors) {
+        $this->actors = $actors;
+    }
+
+    
     /**
      * 
      * @param type $newtitle
@@ -99,6 +175,7 @@ class Movies {
         return $this->id . " Title " . $this->title . " runtime " . $this->runtime . " (originaly released " . $this->releasedate . ")";
     }
 
+        
     /**
      * 
      * @param type $a
@@ -110,11 +187,14 @@ class Movies {
         return $a->birthdate > $b->birthdate;
     }
 
+    /**
+     * void
+     * sorts cast in order of ascending date of birth
+     */
     function PrintSorted() {
-        // var_dump($this->actors) ;
+        // deprecated
         // usort($this->actors, array( $this, "my_sort_function"));
         $myactors = $this->actors;
-        echo "\n\nTest " . $myactors[0]->character . "\n";
         foreach ($myactors as $actor) {
             $temp = $actor->actor;
             $tosort[] = array("birthdate" => $temp->getBirthdate(), "character" => $actor->character);

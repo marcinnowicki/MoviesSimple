@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Actor
  *
@@ -14,16 +8,62 @@
 
 namespace MarcinNowicki\Movies;
 
+/**
+ * Class containing information about actor
+ * Each entity must have a unique identifier.
+ * The Movie entity must hold the title, runtime and release date.
+ * Properties - all private
+ * id - unique id
+ * name - name of actor
+ * familyname - family name of actor
+ * birthdate - day of birth
+ * 
+ * Constructor:
+ * __construct
+ * 
+ * Destructor:
+ * __destruct
+ * 
+ * Methods (setters and getters):
+ * getId - returns id
+ * getName - returns name
+ * getFamilyname - returns family name
+ * getBirthdate - returns date of birth
+ * setId - sets Id
+ * setName - modifies name
+ * setFamilyname - modifies familyname
+ * setBirthdate - modifies birthdate
+ * 
+ * Methods:
+ * getproperty - returns a property by its name
+ * JSON - returns object in JSON format
+ * myCopy - returns a copy of itself, used to add a copy o Actor to Movie
+ *        - returns object
+ *        - can return an array
+ */
 class Actor {
-    //put your code here
-    private $id ;
-    private $name ;
-    private $familyname ;
+
+    private $id;
+    private $name;
+    private $familyname;
+    private $birthdate;
+
+    function __construct($newid, $newname, $newfamilyname, $newbirthdate) {
+        $tempdate = new \DateTime($newbirthdate);
+        if ($tempdate->format('Y-m-d') === $newbirthdate) {
+            $this->id = $newid;
+            $this->name = $newname;
+            $this->familyname = $newfamilyname;
+            $this->birthdate = $newbirthdate;
+        } else {
+            unset($this);
+        }
+    }
+
     /**
-     * @Type("DateTime")
+     * 
+     * @return type
      */
-    private $birthdate ;
-    
     function getId() {
         return $this->id;
     }
@@ -56,46 +96,34 @@ class Actor {
         $this->birthdate = $birthdate;
     }
 
-        
-    function __construct($newid, $newname, $newfamilyname, $newbirthdate) {
-        $tempdate = new \DateTime($newbirthdate) ;
-        if ( $tempdate->format('Y-m-d') === $newbirthdate) {
-            $this->id = $newid ;
-            $this->name = $newname ;
-            $this->familyname = $newfamilyname ;
-            $this->birthdate = $newbirthdate ;
-        } else {
-            unset($this);
-        }
-    }
-    
     function JSON() {
         $JSON = array(
             'id' => $this->id,
             'name' => $this->name,
             'familyname' => $this->familyname,
-            'birthdate ' => $this->birthdate 
+            'birthdate ' => $this->birthdate
         );
-        return json_encode($JSON) ;
+        return json_encode($JSON);
     }
-    
+
     function getproperty($property) {
         return $this->$property;
     }
+
     function myCopy() {
-        
+
         $myCopy = array(
             'id' => $this->id,
             'name' => $this->name,
             'familyname' => $this->familyname,
-            'birthdate' => $this->birthdate 
+            'birthdate' => $this->birthdate
         );
         // return $myCopy ;
-        return self ;
+        return self;
     }
-    
+
     function __destruct() {
-        echo $this->getFamilyname() . " is destroyed<BR/>" ;
+        echo $this->getFamilyname() . " is destroyed<BR/>";
     }
-    
+
 }
