@@ -9,7 +9,7 @@
 /**
  * Description of Actor
  *
- * @author marci_000
+ * @author Marcin Nowicki 
  */
 
 namespace MarcinNowicki\Movies;

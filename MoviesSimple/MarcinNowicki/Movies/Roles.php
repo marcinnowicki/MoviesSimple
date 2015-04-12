@@ -8,8 +8,9 @@
 
 /**
  * Description of Roles
+ * Deprecated. Roles are implemented inside Movie class
  *
- * @author marci_000
+ * @author Marcin Nowicki 
  */
 
 namespace MarcinNowicki\Movies;
@@ -33,10 +34,3 @@ class Roles {
 
 }
 
-class test{
-    public $MyValue ;
-    function __construct($MyValue) {
-        $this->MyValue = $MyValue;
-    }
-
-}
