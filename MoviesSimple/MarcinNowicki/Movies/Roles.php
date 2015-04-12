@@ -11,6 +11,9 @@
  *
  * @author marci_000
  */
+
+namespace MarcinNowicki\Movies;
+
 class Roles {
 
 //put your code here
@@ -20,12 +23,20 @@ class Roles {
     public $character;
     public $description;
 
-    function Roles($newid, $newidMovie, $newidActor, $newcharacter, $newdescription) {
+    function __construct($newid, $newidMovie, $newidActor, $newcharacter, $newdescription) {
         $this->id = $newid ;
         $this->idMovie  = $newidMovie ;
         $this->idActor = $newidActor ;
         $this->character = $newcharacter ;
         $this->description = $newdescription ;
+    }
+
+}
+
+class test{
+    public $MyValue ;
+    function __construct($MyValue) {
+        $this->MyValue = $MyValue;
     }
 
 }
